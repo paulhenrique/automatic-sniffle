@@ -8,6 +8,7 @@ export default function Home() {
       <Head>
         <title>Automatic Sniffle</title>
         <meta name="description" content="User settings" />
+        <script src="https://kit.fontawesome.com/9f635a5f2f.js" crossOrigin="anonymous"></script>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
@@ -21,7 +22,7 @@ export default function Home() {
                 </Link>
               </div>
               <div className="ml-2 d-inline">
-                <Link href="/administrar-usuarios" >
+                <Link href="/users" >
                   <a className="btn btn-lg">Administrar usuários</a>
                 </Link>
               </div>
