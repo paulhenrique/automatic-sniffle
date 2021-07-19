@@ -39,7 +39,9 @@ const Pessoa = {
   },
   cpf: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    index: true,
   },
   created_date: {
     type: Date,

@@ -35,7 +35,7 @@ function NewPessoa() {
       cidade,
       estado,
     });
-
+    console.log(response);
     return response.data;
   }
 
@@ -46,10 +46,15 @@ function NewPessoa() {
 
     if (!isValidCPF(refactoredCep)) {
       toast.warn('CPF Inválido');
-      return
+      return;
     }
 
-    await sendDataToDataBase();
+    const data = await sendDataToDataBase();
+    if (await data.error) {
+      toast.error('Este CPF já está cadastrado!');
+      return;
+    };
+
     router.push('/pessoas');
 
   }

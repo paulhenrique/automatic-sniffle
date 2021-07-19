@@ -12,12 +12,13 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       try {
-        const newPessoa = new Pessoa({
+        if (await Pessoa.findOne({ 'cpf': req.body.cpf })) throw new Error('CPF duplicado');
+        const newPessoa = Pessoa.create({
           ...req.body
         });
-        res.send(await newPessoa.save());
+        res.json({ error: false, content: await newPessoa });
       } catch (err) {
-        res.send(err);
+        res.json({ error: true, message: err.message });
       }
       break;
     default:
