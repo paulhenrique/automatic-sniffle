@@ -13,15 +13,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const newPessoa = new Pessoa({
-          "nome": req.body.nome,
-          "sobrenome": req.body.sobrenome,
-          "cep": req.body.cep,
-          "estado": req.body.estado,
-          "cidade": req.body.cidade,
-          "logradouro": req.body.logradouro,
-          "email": req.body.email,
-          "telefone": req.body.telefone,
-          "cpf": req.body.cpf,
+          ...req.body
         });
         res.send(await newPessoa.save());
       } catch (err) {
