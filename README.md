@@ -14,14 +14,18 @@
 ### ✨ [Demo](https://automatic-sniffle.vercel.app/)
 
 ## Install
+Primeiro é necessário fazer o clone e acessar a pasta do projeto. 
+```sh
+$ git clone https://github.com/paulhenrique/automatic-sniffle.git
+cd automatic-sniffle
+```
 
+Após isso basta fazer a instalação dos arquivos
 ```sh
 yarn install
 ```
 
-
 ## Uso
-
 Para usar em ambiente local é necessário apenas definir o ```DB_CONNECTION``` no arquivo ```.env``` ou ```.env.local```, que fará a conexão com a base de dados do MongoDB. 
 
 ```sh
