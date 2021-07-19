@@ -5,7 +5,7 @@ import CardUser from '../components/CardUser';
 import Note from '../assets/note.svg';
 import Head from 'next/head';
 import database from '../common/services/database';
-
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function Pessoas() {
   const [pessoas, setPessoas] = React.useState([]);
@@ -25,9 +25,9 @@ function Pessoas() {
         <meta name="description" content="Listagem de usuários" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container pt-5">
+      <div className="container pt-5" >
         <div className="row">
-          <div className="col">
+          <div className="col" style={{ maxHeight: '600px', overflowY: 'scroll' }}>
             <h2>Estes são os usuários na nossa base</h2>
             <p>Quer cadastrar uma nova Pessoa? <Link href="/nova-pessoa">Clique aqui</Link></p>
             {
@@ -37,11 +37,15 @@ function Pessoas() {
 
             {pessoas.length > 0 && pessoas.map((e, i) => (<CardUser updated={() => getPessoasFromDatabase()} key={e._id} pessoa={e} />))}
           </div>
-          <div className="col-4">
+          <div className="col-4 d-none">
             <Image src={Note} alt="Notebook" />
           </div>
         </div>
+        <Link href="/">
+          <a className="btn btn-secondary"><AiOutlineArrowLeft /> Voltar</a>
+        </Link>
       </div>
+
     </>
   )
 }

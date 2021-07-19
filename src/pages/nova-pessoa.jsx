@@ -81,12 +81,12 @@ function NewPessoa() {
   return (
     <div className="container">
       <ToastContainer />
-      <div className="row vh-100 align-items-center">
-        <div className="col-7">
+      <div className="row vh-100 align-items-center py-md-5">
+        <div className="col-7 d-none d-md-block">
           <Image src={Rocket} alt="Rocket" />
         </div>
         <div className="col">
-          <h1>Novo Usuário</h1>
+          <h1>Nova Pessoa</h1>
           <form onSubmit={(e) => handleSubmitForm(e)}>
             <div className="row">
               <div className="col">

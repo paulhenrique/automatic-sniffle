@@ -13,8 +13,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
-        <div className="row vh-100 fill-height align-items-center">
-          <div className="col">
+        <div className="row vh-100 fill-height align-items-center text-center">
+          <div className="col-12 col-md-6">
             <h1 className="pb-2 text-dark">Por onde quer começar?</h1>
             <div>
               <div className="d-inline">
@@ -29,7 +29,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="col align-items-center fill-height">
+          <div className="col-12 col-md-6 d-none d-md-block align-items-center fill-height">
             <span>
               <Image src={Hand} alt="Hand" />
             </span>
