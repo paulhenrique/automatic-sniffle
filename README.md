@@ -19,12 +19,33 @@
 yarn install
 ```
 
-## Usage
+
+## Uso
+
+Para usar em ambiente local é necessário apenas definir o ```DB_CONNECTION``` no arquivo ```.env``` ou ```.env.local```, que fará a conexão com a base de dados do MongoDB. 
 
 ```sh
 yarn dev
 ```
 
+## Estrutura 
+
+```sh
+$ tree
+├───assets
+├───common
+│   ├───database
+│   ├───models
+│   ├───resources
+│   └───services
+├───components
+├───pages
+│   ├───api
+│   │   └───pessoa
+│   └───editar-pessoa
+└───styles
+
+```
 ## Author
 
 👤 **Paulo Henriuque**
