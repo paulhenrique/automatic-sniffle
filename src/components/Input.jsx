@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({ name, type = 'text', placeholder = '', label, helper, required = true, onInput, onClick }, props,) => {
+const Input = ({ name, type = 'text', placeholder = '', label, value, helper, required = true, onInput, onClick }, props,) => {
   return (
     <div className="mb-1">
       <label htmlFor={name} className="form-label">{label}</label>
@@ -9,6 +9,7 @@ const Input = ({ name, type = 'text', placeholder = '', label, helper, required 
         placeholder={placeholder}
         className="form-control"
         id={name}
+        value={value || ''}
         onClick={onClick}
         onInput={onInput}
         required={required}

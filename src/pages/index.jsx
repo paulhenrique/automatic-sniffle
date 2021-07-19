@@ -17,12 +17,12 @@ export default function Home() {
             <h1 className="pb-2 text-dark">Por onde quer começar?</h1>
             <div>
               <div className="d-inline">
-                <Link href="/new-user" >
+                <Link href="/nova-pessoa" >
                   <a className="btn btn-primary btn-lg mr-5">Cadastrar novo usuário</a>
                 </Link>
               </div>
               <div className="ml-2 d-inline">
-                <Link href="/users" >
+                <Link href="/pessoas" >
                   <a className="btn btn-lg">Administrar usuários</a>
                 </Link>
               </div>

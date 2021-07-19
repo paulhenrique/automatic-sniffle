@@ -17,6 +17,10 @@ const Pessoa = {
     type: String,
     required: true
   },
+  nacionalidade: {
+    type: String,
+    required: true
+  },
   cidade: {
     type: String,
     required: true

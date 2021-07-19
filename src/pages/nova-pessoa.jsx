@@ -6,7 +6,7 @@ import Rocket from '../assets/rocket.svg';
 import Input from '../components/Input';
 import database from '../common/services/database';
 
-function NewUser() {
+function NewPessoa() {
   const [nome, setNome] = React.useState('');
   const [sobrenome, setSobrenome] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -56,6 +56,7 @@ function NewUser() {
                 <Input
                   name="nome"
                   label="Nome"
+                  value={nome}
                   helper="Digite o nome"
                   placeholder="Anakin"
                   onInput={(e) => setNome(e.target.value)}
@@ -176,4 +177,4 @@ function NewUser() {
   )
 }
 
-export default NewUser
+export default NewPessoa
