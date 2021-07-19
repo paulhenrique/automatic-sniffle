@@ -6,6 +6,9 @@ import Rocket from '../assets/rocket.svg';
 import Input from '../components/Input';
 import database from '../common/services/database';
 import consultaCEP from '../common/services/consultaCEP';
+import isValidCPF from '../common/resources/isValidCPF';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewPessoa() {
   const [nome, setNome] = React.useState('');
@@ -39,6 +42,13 @@ function NewPessoa() {
   const router = useRouter();
   async function handleSubmitForm(e) {
     e.preventDefault();
+    const refactoredCep = cpf.replace(/_/g, "").replace('-', '').replace('.', '');
+
+    if (!isValidCPF(refactoredCep)) {
+      toast.warn('CPF Inválido');
+      return
+    }
+
     await sendDataToDataBase();
     router.push('/pessoas')
   }
@@ -55,10 +65,18 @@ function NewPessoa() {
     }
 
     getAddressData();
-  }, [cep])
+  }, [cep]);
+
+  React.useEffect(() => {
+    const refactoredCep = cpf.replace(/_/g, "").replace('-', '').replace('.', '');
+    if (refactoredCep.length !== 12) return;
+    if (isValidCPF(refactoredCep)) return;
+    toast.warn('CPF Inválido');
+  }, [cpf]);
 
   return (
     <div className="container">
+      <ToastContainer />
       <div className="row vh-100 align-items-center">
         <div className="col-7">
           <Image src={Rocket} alt="Rocket" />
@@ -74,6 +92,7 @@ function NewPessoa() {
                   value={nome}
                   helper="Digite o nome"
                   placeholder="Anakin"
+                  type="text"
                   onInput={(e) => setNome(e.target.value)}
                 />
               </div>
@@ -83,6 +102,7 @@ function NewPessoa() {
                   value={sobrenome}
                   label="Sobrenome"
                   helper="Digite o sobrenome"
+                  type="text"
                   placeholder="Skywalker"
                   onInput={(e) => setSobrenome(e.target.value)}
                 />
@@ -90,7 +110,7 @@ function NewPessoa() {
             </div>
             <Input
               name="email"
-              type="email"
+              type="text"
               value={email}
               label="Email"
               helper="Digite o seu melhor e-mail"
@@ -99,7 +119,7 @@ function NewPessoa() {
             />
             <Input
               name="telefone"
-              type="telefone"
+              type="text"
               value={telefone}
               label="Telefone"
               helper="Digite seu número de telefone"
@@ -109,7 +129,6 @@ function NewPessoa() {
             />
             <Input
               name="cpf"
-              type="cpf"
               label="CPF"
               helper="Digite o seu cpf"
               value={cpf}
@@ -135,6 +154,7 @@ function NewPessoa() {
                   name="cep"
                   value={cep}
                   label="CEP"
+                  type="text"
                   mask="99.999-999"
                   helper="Digite o CEP"
                   placeholder="18214400"
@@ -148,6 +168,7 @@ function NewPessoa() {
                   value={logradouro}
                   name="logradouro"
                   label="Logradouro"
+                  type="text"
                   helper="Digite o Logradouro"
                   placeholder="Rua Um"
                   onInput={(e) => setLogradouro(e.target.value)}
@@ -159,6 +180,7 @@ function NewPessoa() {
                   name="cidade"
                   value={cidade}
                   label="Cidade"
+                  type="text"
                   helper="Digite a Cidade"
                   placeholder="Itapetininga"
                   onInput={(e) => setCidade(e.target.value)}
@@ -169,6 +191,7 @@ function NewPessoa() {
                   name="estado"
                   value={estado}
                   label="Estado"
+                  type="text"
                   helper="Estado"
                   placeholder="SP"
                   onInput={(e) => setEstado(e.target.value)}
