@@ -39,18 +39,26 @@ function CardUser({ pessoa, updated }) {
   }
   return (
     <div className="card rounded-lg border-0 shadow-sm mb-3">
-      <div className="card-body d-flex align-items-center justify-content-between">
-        <h5>{pessoa.nome}</h5>
-        <span>
+      <div className="card-body">
+        <p className="mb-0 pb-1">
+          <strong>{pessoa.nome}</strong>
+        </p>
+        <p className="mt-0">
+          {`${pessoa.nome} ${pessoa.sobrenome}, ${pessoa.nacionalidade}, CPF: ${pessoa.cpf} - Telefone:${pessoa.telefone}`} <br />
+          <strong>Endereço:</strong> {`${pessoa.logradouro}, ${pessoa.cidade} - ${pessoa.estado}, ${pessoa.cep}`} <br />
+        </p>
+        <div className="mt-2">
           <Link href={`/editar-pessoa/${pessoa._id}`} passHref>
-            <button className="btn btn-success m-1 text-center align-items-center btn-sm rounded-circle ml-5">
+            <button className="btn btn-success m-1 text-center align-items-center btn-sm ml-5">
+              Editar
               <AiOutlineEdit />
             </button>
           </Link>
-          <button className="btn btn-danger btn-sm rounded-circle ml-5" onClick={() => confirmDelete(pessoa._id)}>
+          <button className="btn btn-danger btn-sm ml-5" onClick={() => confirmDelete(pessoa._id)}>
+            Excluir
             <AiOutlineUserDelete />
           </button>
-        </span>
+        </div>
       </div>
     </div>
   );

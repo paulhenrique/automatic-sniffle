@@ -11,9 +11,8 @@ function Pessoas() {
   const [pessoas, setPessoas] = React.useState([]);
 
   const getPessoasFromDatabase = React.useCallback(async () => {
-    console.log('executando');
     const { data } = await database.get();
-    setPessoas(await data);
+    setPessoas(await data.reverse());
   }, []);
 
   React.useEffect(() => {
@@ -30,6 +29,7 @@ function Pessoas() {
         <div className="row">
           <div className="col">
             <h2>Estes são os usuários na nossa base</h2>
+            <p>Quer cadastrar uma nova Pessoa? <Link href="/nova-pessoa">Clique aqui</Link></p>
             {
               pessoas.length === 0 &&
               (<p className="mt-5">Ainda não há Pessoas na nossa base, <Link href="/nova-pessoa"><a className="btn btn-primary">Cadastrar Pessoa</a></Link></p>)

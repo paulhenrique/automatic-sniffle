@@ -28,9 +28,9 @@ function NewPessoa() {
       sobrenome,
       email,
       nacionalidade,
-      cep,
-      cpf,
-      telefone,
+      cep: cep.replace(/_/g, ''),
+      cpf: cpf.replace(/_/g, ''),
+      telefone: telefone.replace(/_/g, ''),
       logradouro,
       cidade,
       estado,
@@ -42,7 +42,7 @@ function NewPessoa() {
   const router = useRouter();
   async function handleSubmitForm(e) {
     e.preventDefault();
-    const refactoredCep = cpf.replace(/_/g, "").replace('-', '').replace('.', '');
+    const refactoredCep = cpf.replace(/_|-|\./g, "");
 
     if (!isValidCPF(refactoredCep)) {
       toast.warn('CPF Inválido');
@@ -50,15 +50,15 @@ function NewPessoa() {
     }
 
     await sendDataToDataBase();
-    router.push('/pessoas')
+    router.push('/pessoas');
+
   }
 
   React.useEffect(() => {
-    let refactoredCep = cep.replace('.', '').replace('-', '').replace(/_/g, "");
-    if (refactoredCep.length < 8) return;
-
+    let refactoredCep = cep.replace(/_|-|\./g, "");
+    if (refactoredCep.length !== 8) return;
     async function getAddressData() {
-      const { data } = await consultaCEP.get(`/${cep.replace('.', '').replace('_', '')}/json`);
+      const { data } = await consultaCEP.get(`/${cep.replace(/_|-|\./g, "")}/json`);
       setCidade(data.localidade);
       setEstado(data.uf);
       setLogradouro(data.logradouro);
@@ -68,9 +68,9 @@ function NewPessoa() {
   }, [cep]);
 
   React.useEffect(() => {
-    const refactoredCep = cpf.replace(/_/g, "").replace('-', '').replace('.', '');
-    if (refactoredCep.length !== 12) return;
-    if (isValidCPF(refactoredCep)) return;
+    const refactoredCPF = cpf.replace(/_|-|\./g, "");
+    if (refactoredCPF.length !== 12) return;
+    if (isValidCPF(refactoredCPF)) return;
     toast.warn('CPF Inválido');
   }, [cpf]);
 

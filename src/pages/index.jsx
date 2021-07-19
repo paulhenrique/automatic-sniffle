@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
+import Script from 'next/script';
 import Hand from '../assets/hand.png';
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <Head>
         <title>Automatic Sniffle</title>
         <meta name="description" content="User settings" />
-        <script src="https://kit.fontawesome.com/9f635a5f2f.js" crossOrigin="anonymous"></script>
+        {/* <Script src="https://kit.fontawesome.com/9f635a5f2f.js" crossOrigin="anonymous"></Script> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="">
