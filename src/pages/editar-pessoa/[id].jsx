@@ -43,7 +43,7 @@ function EditPessoa() {
     getDataFromCurrentUser()
   }, [getDataFromCurrentUser]);
   async function sendDataToDataBase() {
-    const response = await database.post('', {
+    const response = await database.put(`/${id}`, {
       nome,
       sobrenome,
       email,
@@ -187,7 +187,7 @@ function EditPessoa() {
                 </Link>
               </div>
               <div className="col">
-                <button type="submit" className="shadow btn btn-primary w-100">Cadastrar</button>
+                <button type="submit" className="shadow btn btn-primary w-100">Atualizar dados do usuário</button>
               </div>
             </div>
           </form>
