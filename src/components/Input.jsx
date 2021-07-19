@@ -1,11 +1,12 @@
 import React from 'react'
-
-const Input = ({ name, type = 'text', placeholder = '', label, value, helper, required = true, onInput, onClick }, props,) => {
+import InputMask from 'react-input-mask';
+const Input = ({ name, type = 'text', placeholder = '', label, value, helper, required = true, onInput, onClick, mask }, props,) => {
   return (
     <div className="mb-1">
       <label htmlFor={name} className="form-label">{label}</label>
-      <input
+      <InputMask
         type={type}
+        mask={mask}
         placeholder={placeholder}
         className="form-control"
         id={name}

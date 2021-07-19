@@ -89,9 +89,9 @@ function NewPessoa() {
               value={telefone}
               label="Telefone"
               helper="Digite seu número de telefone"
+              mask="(+55) 99 99999-9999"
               placeholder="(+55) 15 99999-9999"
               onInput={(e) => setTelefone(e.target.value)}
-
             />
             <Input
               name="cpf"
@@ -100,6 +100,7 @@ function NewPessoa() {
               helper="Digite o seu cpf"
               value={cpf}
               placeholder="000.000.000-00"
+              mask="999.999.999-99"
               onInput={(e) => setCpf(e.target.value)}
 
             />
@@ -120,6 +121,7 @@ function NewPessoa() {
                   name="cep"
                   value={cep}
                   label="CEP"
+                  mask="99.999-999"
                   helper="Digite o CEP"
                   placeholder="18214400"
                   onInput={(e) => setCep(e.target.value)}

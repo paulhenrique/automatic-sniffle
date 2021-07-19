@@ -99,6 +99,7 @@ function EditPessoa() {
               type="email"
               value={email}
               label="Email"
+              mask=""
               helper="Digite o seu melhor e-mail"
               placeholder="anakin@deathstar.com"
               onInput={(e) => setEmail(e.target.value)}
@@ -110,7 +111,8 @@ function EditPessoa() {
               value={telefone}
               label="Telefone"
               helper="Digite seu número de telefone"
-              placeholder="(+55) 15 99999-9999"
+              placeholder="(+55) 99 99999-9999"
+              mask="(+55) 99 99999-9999"
               onInput={(e) => setTelefone(e.target.value)}
 
             />
@@ -118,6 +120,7 @@ function EditPessoa() {
               name="cpf"
               type="cpf"
               label="CPF"
+              mask="999.999.999-99"
               helper="Digite o seu cpf"
               value={cpf}
               placeholder="000.000.000-00"
@@ -141,8 +144,9 @@ function EditPessoa() {
                   name="cep"
                   value={cep}
                   label="CEP"
+                  mask="99.999-999"
                   helper="Digite o CEP"
-                  placeholder="18214400"
+                  placeholder="18.214-400"
                   onInput={(e) => setCep(e.target.value)}
                 />
               </div>
