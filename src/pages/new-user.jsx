@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Rocket from '../assets/rocket.svg';
 import Input from '../components/Input';
 import database from '../common/services/database';
@@ -34,9 +35,11 @@ function NewUser() {
     return response.data;
   }
 
+  const router = useRouter();
   async function handleSubmitForm(e) {
     e.preventDefault();
-    console.log(await sendDataToDataBase());
+    await sendDataToDataBase();
+    router.push('/pessoas')
   }
 
   return (

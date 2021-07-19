@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 import Note from '../assets/note.svg';
 import Head from 'next/head';
 import Swal from 'sweetalert2';
@@ -72,14 +73,15 @@ function Pessoas() {
   return (
     <>
       <Head>
-        <title>Automatic Sniffle - Listing Users</title>
+        <title>Automatic Sniffle - Listando Pessoas</title>
         <meta name="description" content="Listagem de usuários" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container pt-5">
         <div className="row">
           <div className="col"><h2>Estes são os usuários na nossa base</h2>
-            {pessoas.map((e, i) => (<CardUser updated={() => getPessoasFromDatabase()} key={e._id} pessoa={e} />))}
+            {pessoas.length === 0 && (<p className="mt-5">Ainda não há Pessoas na nossa base, <Link href="/new-user"><a className="btn btn-primary">Cadastrar Pessoa</a></Link></p>)}
+            {pessoas.length > 0 && pessoas.map((e, i) => (<CardUser updated={() => getPessoasFromDatabase()} key={e._id} pessoa={e} />))}
           </div>
           <div className="col-4">
             <Image src={Note} alt="Notebook" />
