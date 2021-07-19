@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Rocket from '../assets/rocket.svg';
 import Input from '../components/Input';
+import database from '../common/services/database';
 
 function NewUser() {
   const [nome, setNome] = React.useState('');
@@ -13,20 +14,31 @@ function NewUser() {
   const [logradouro, setLogradouro] = React.useState('');
   const [cidade, setCidade] = React.useState('');
   const [estado, setEstado] = React.useState('');
+  const [telefone, setTelefone] = React.useState('');
   const [cpf, setCpf] = React.useState('');
-  function handleSubmitForm(e) {
-    e.preventDefault();
-    console.log({
+
+  async function sendDataToDataBase() {
+    const response = await database.post('', {
       nome,
       sobrenome,
       email,
       nacionalidade,
       cep,
+      cpf,
+      telefone,
       logradouro,
       cidade,
       estado,
     });
+
+    return response.data;
   }
+
+  async function handleSubmitForm(e) {
+    e.preventDefault();
+    console.log(await sendDataToDataBase());
+  }
+
   return (
     <div className="container">
       <div className="row vh-100 align-items-center">
@@ -65,6 +77,16 @@ function NewUser() {
               helper="Digite o seu melhor e-mail"
               placeholder="anakin@deathstar.com"
               onInput={(e) => setEmail(e.target.value)}
+
+            />
+            <Input
+              name="telefone"
+              type="telefone"
+              value={telefone}
+              label="Telefone"
+              helper="Digite seu número de telefone"
+              placeholder="(+55) 15 99999-9999"
+              onInput={(e) => setTelefone(e.target.value)}
 
             />
             <Input

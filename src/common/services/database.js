@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const database = axios.create({
-  baseURL: '/pessoa'
+  baseURL: '/api/pessoa'
 });
 
 export default database;
