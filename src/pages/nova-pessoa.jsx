@@ -35,7 +35,6 @@ function NewPessoa() {
       cidade,
       estado,
     });
-    console.log(response);
     return response.data;
   }
 

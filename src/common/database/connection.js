@@ -7,6 +7,8 @@ export default function connection() {
       useUnifiedTopology: true
     },
     (error) => {
-      console.log(error);
+      if (error) {
+        console.log(error);
+      }
     });
 }

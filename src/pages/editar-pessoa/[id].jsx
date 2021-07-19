@@ -25,7 +25,6 @@ function EditPessoa() {
     const { data } = await database.get(`/${id}`);
     const currentUserData = await data[0];
     if (!(currentUserData)) return;
-    console.log(currentUserData.nome);
     setNome(currentUserData.nome);
     setSobrenome(currentUserData.sobrenome);
     setEmail(currentUserData.email);
