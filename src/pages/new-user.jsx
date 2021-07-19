@@ -55,7 +55,7 @@ function NewUser() {
                   label="Nome"
                   helper="Digite o nome"
                   placeholder="Anakin"
-                  onInput={() => setNome('oie')}
+                  onInput={(e) => setNome(e.target.value)}
                 />
               </div>
               <div className="col">
