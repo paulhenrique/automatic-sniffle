@@ -1,15 +1,12 @@
 import connection from '../../common/database/connection';
 import Pessoa from '../../common/models/Pessoa';
 
-export default async function handler(req, res) {
+
+export default async function userHandler(req, res) {
   connection();
   const { method } = req;
 
   switch (method) {
-    case 'GET':
-      const pessoas = await Pessoa.find();
-      res.status(200).json(pessoas);
-      break;
     case 'POST':
       try {
         const newPessoa = new Pessoa({
@@ -29,7 +26,7 @@ export default async function handler(req, res) {
       }
       break;
     default:
-      res.setHeader('Allow', ['GET', 'POST']);
+      res.setHeader('Allow', ['GET', 'PUT']);
       res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
