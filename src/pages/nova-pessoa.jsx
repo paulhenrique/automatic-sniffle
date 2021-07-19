@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Rocket from '../assets/rocket.svg';
 import Input from '../components/Input';
 import database from '../common/services/database';
+import consultaCEP from '../common/services/consultaCEP';
 
 function NewPessoa() {
   const [nome, setNome] = React.useState('');
@@ -41,6 +42,20 @@ function NewPessoa() {
     await sendDataToDataBase();
     router.push('/pessoas')
   }
+
+  React.useEffect(() => {
+    let refactoredCep = cep.replace('.', '').replace('-', '').replace(/_/g, "");
+    if (refactoredCep.length < 8) return;
+
+    async function getAddressData() {
+      const { data } = await consultaCEP.get(`/${cep.replace('.', '').replace('_', '')}/json`);
+      setCidade(data.localidade);
+      setEstado(data.uf);
+      setLogradouro(data.logradouro);
+    }
+
+    getAddressData();
+  }, [cep])
 
   return (
     <div className="container">
@@ -81,7 +96,6 @@ function NewPessoa() {
               helper="Digite o seu melhor e-mail"
               placeholder="anakin@deathstar.com"
               onInput={(e) => setEmail(e.target.value)}
-
             />
             <Input
               name="telefone"
